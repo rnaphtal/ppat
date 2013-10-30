@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^', include('videoconference.urls')),
-    url(r'^(?P<poll_id>\d+)/$', views.detail, name='detail'),
+    #url(r'^(?P<poll_id>\d+)/$', views.detail, name='detail'),
     # Examples:
     # url(r'^$', 'teambarbara.views.home', name='home'),
     # url(r'^teambarbara/', include('teambarbara.foo.urls')),
