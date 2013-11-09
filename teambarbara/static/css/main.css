@@ -1,0 +1,6 @@
+/* General Layout */
+
+html, body, .container-fluid, .row-fluid {
+	position: relative;
+	height: 100%;
+}
