@@ -111,7 +111,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'teambarbara.urls'
 
 TEMPLATE_DIRS = (
-    "/Users/rnaphtal/Documents/Classes/SeniorYear/Fall/6.811/Project/ppat/teambarbara/templates" # Change this to your own directory.
+    #"/Users/rnaphtal/Documents/Classes/SeniorYear/Fall/6.811/Project/ppat/teambarbara/templates" # Change this to your own directory.
 )
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -121,7 +121,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/rnaphtal/Documents/Classes/SeniorYear/Fall/6.811/Project/ppat/teambarbara/templates'
+    os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'),
 )
 
 INSTALLED_APPS = (
