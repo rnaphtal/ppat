@@ -9,8 +9,8 @@
 <div id="localVideo" muted></div>
 <div id="remoteVideo"></div>
 
-
 <script>
+
 var webrtc = new SimpleWebRTC({
   localVideoEl: 'localVideo',
   remoteVideosEl: 'remoteVideo',
@@ -18,7 +18,8 @@ var webrtc = new SimpleWebRTC({
 });
 
 webrtc.on('readyToCall', function () {
-  webrtc.joinRoom('ppat');
+  var roomName = "{{ room_name }}";
+  webrtc.joinRoom(roomName);
 });
 </script>
 

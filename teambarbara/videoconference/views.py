@@ -11,5 +11,9 @@ def index(request):
     })
     return HttpResponse(template.render(context))
 
-def detail(request, poll_id):
-    return HttpResponse("You're looking at poll %s." % poll_id)
+def enterRoom(request, roomName):
+    template = loader.get_template('videoconference/index.html')
+    context = RequestContext(request, {
+        'room_name' : roomName,
+    })
+    return HttpResponse(template.render(context))
