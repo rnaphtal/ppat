@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^', include('videoconference.urls')),
+    
     #url(r'^(?P<poll_id>\d+)/$', views.detail, name='detail'),
     # Examples:
     # url(r'^$', 'teambarbara.views.home', name='home'),
@@ -16,5 +16,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include('videoconference.urls')),
    
 )
