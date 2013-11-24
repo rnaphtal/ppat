@@ -4,3 +4,34 @@ html, body, .container-fluid, .row-fluid {
 	position: relative;
 	height: 100%;
 }
+
+body {
+	/*-webkit-box-flex: 1.0;
+	-webkit-box-orient: horizontal;*/
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+}
+
+#names_panel {
+	/*-moz-box-flex:1.0;*/ /* Firefox */
+	/*-webkit-box-flex:1.0;*/ /* Safari and Chrome */
+	/*-ms-flex:1.0;*/ /* Internet Explorer 10 */
+	/*box-flex:1.0;*/
+	/*-webkit-box-orient: horizontal;*/
+	-webkit-flex: 1 0 0;
+	flex: 1 0 0;
+	border:1px solid red;
+}
+
+#videos{
+	/*-moz-box-flex:2.0;*/ /* Firefox */
+	/*-webkit-box-flex:2.0;*/ /* Safari and Chrome */
+	/*-ms-flex:2.0;*/ /* Internet Explorer 10 */
+	/*box-flex:2.0;*/
+	/*-webkit-box-orient: horizontal;*/
+	-webkit-flex: 3 0 0;
+	flex: 3 0 0;
+	border:1px solid blue;
+}
