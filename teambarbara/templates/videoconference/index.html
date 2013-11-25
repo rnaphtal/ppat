@@ -18,38 +18,44 @@
 </head>
 
 <body>
-  <div id="names_panel">
-    <p>Names Panel</p>
-    {% include "videoconference/names_panel.html" %}
-  </div>
+  <header>
+    <h1 id="logo_text">Team Barbara</h1>
+  </header>
 
-  <div id="videos">
-    <p>Videos Panel</p>
-    {% load staticfiles %}
-    {% include "videoconference/video.html" %}
-    <!--<video />
+  <div class="middle">
+    <div id="names_panel">
+      <p>Names Panel</p>
+      {% include "videoconference/names_panel.html" %}
+    </div>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/test.js"></script>
-    <script>
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    <div id="videos">
+      <p>Videos Panel</p>
+      {% load staticfiles %}
+      {% include "videoconference/video.html" %}
+      <!--<video />
 
-    var constraints = {video: true};
+      <script type="text/javascript" src="{{ STATIC_URL }}js/test.js"></script>
+      <script>
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-    function successCallback(stream) {
-      window.stream = stream; // stream available to console
-      var video = document.querySelector("video");
-      video.src = window.URL.createObjectURL(stream);
-      video.play();
-    }
+      var constraints = {video: true};
 
-    function errorCallback(error){
-      console.log("navigator.getUserMedia error: ", error);
-    }
+      function successCallback(stream) {
+        window.stream = stream; // stream available to console
+        var video = document.querySelector("video");
+        video.src = window.URL.createObjectURL(stream);
+        video.play();
+      }
 
-    navigator.getUserMedia(constraints, successCallback, errorCallback);
-    </script>-->
-  </div>
+      function errorCallback(error){
+        console.log("navigator.getUserMedia error: ", error);
+      }
 
+      navigator.getUserMedia(constraints, successCallback, errorCallback);
+      </script>-->
+    </div>
+  <div>
+    
 </body>
 
 </html>

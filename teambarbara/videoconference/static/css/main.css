@@ -8,10 +8,23 @@ html, body, .container-fluid, .row-fluid {
 body {
 	/*-webkit-box-flex: 1.0;
 	-webkit-box-orient: horizontal;*/
+	/*display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;*/
+}
+
+header {
+	height: 50px;
+	background-color: black;
+}
+
+.middle {
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-direction: row;
 	flex-direction: row;
+	height: 100%;
 }
 
 #names_panel {
@@ -34,4 +47,8 @@ body {
 	-webkit-flex: 3 0 0;
 	flex: 3 0 0;
 	border:1px solid blue;
+}
+
+#logo_text {
+	color: white;
 }
