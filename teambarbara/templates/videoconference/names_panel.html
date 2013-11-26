@@ -1,23 +1,19 @@
 <!doctype html>
- 
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Team Barbara</title>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
- 
-  
+  <link rel="stylesheet" href="/resources/demos/style.css">
   <style>
-  #draggable1 {width: 150px; height: 150 px; padding 0.5em;}
-  #draggable2 {width: 150px; height: 150 px; padding 0.5em;}
-  #draggable3 {width: 150px; height: 150 px; padding 0.5em;}
-  #draggable4 {width: 150px; height: 150 px; padding 0.5em;}
+  /* style the list to maximize the droppable hitarea */
+  .groups ol { margin: 0; padding: 2em 0 2em 3em; }
   </style>
   <script>
   $(function() {
-    $( "#groups" ).accordion({
+    $( "#grouping" ).accordion({
         collapsible:true,
         beforeActivate: function(event, ui) {
              // The accordion believes a panel is being opened
@@ -48,88 +44,84 @@
             
             return false; //Cancels default action
             }
+            });
+    $( "#people li" ).draggable({
+      appendTo: "body",
+      helper: "clone"
+    });
+    $( ".groups ol" ).droppable({
+      activeClass: "ui-state-default",
+      hoverClass: "ui-state-hover",
+      accept: ":not(.ui-sortable-helper)",
+      drop: function( event, ui ) {
+        $( this ).find( ".placeholder" ).remove();
+        $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
+      }
+    }).sortable({
+      items: "li:not(.placeholder)",
+      sort: function() {
+        // gets added unintentionally by droppable interacting with sortable
+        // using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
+        $( this ).removeClass( "ui-state-default" );
+      }
     });
   });
   $(function() {
-    var state = true;
-    $("button:first").button({
-        icons: {
-            primary: "ui-icon-plus"
-        }
-        })
+    $("button").button()
+    .click(function(e){
+        e.stopPropagation();
+        });
     });
   $(function() {
-    $("#draggable1").draggable();
-    $("#draggable2").draggable();
-    $("#draggable3").draggable();
-    $("#draggable4").draggable();
-    });
+    $("#groupButton").click(function() {
+        var newAccordion='<h4>New Group<button>show</button></h4><div><ol><li class="placeholder">Add individuals here</li></ol>'
+        $("#grouping").append(newAccordion).accordion("refresh").accordion();
+        });
+  });
   </script>
 </head>
 <body>
-  
-<div id="new group">
+
+<div id="groupButton">
 <button> New Group </button>
 </div>
- 
-<div id="groups">
-  <h3><input type="text" />Group 1</h3>
-  <div>
-    <p>
-    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-    </p>
-  </div>
-  <h3>Group 2</h3>
-  <div>
-    <p>
-    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-    suscipit faucibus urna.
-    </p>
-  </div>
-  <h3>Group 3</h3>
-  <div>
-    <p>
-    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-    </p>
-    <ul>
-      <li>List item one</li>
-      <li>List item two</li>
-      <li>List item three</li>
-    </ul>
-  </div>
-  <h3>Individuals</h3>
-  <div>
-    
-    {% for user in others %}
-    <div id="{{user.name}}" class="ui-widgit-content">
-        <p>{{user.name}}</p>
+
+<div class="groups">
+  <div id="grouping">
+    <h4><a href="#">Individuals</a></h4>
+    <div id="people">
+      <ul>
+        {% for user in others %}
+        <li id="{{user.name}}" class="ui-widgit-content">
+        <button>{{user.name}}</button>
+        </li>
+        {% endfor %}
+        <li><button>Barbara</button></li>
+        <li><button>Charlotte</button></li>
+        <li><button>Jing</button></li>
+        <li><button>Rachael</button></li>
+      </ul>
     </div>
-    {% endfor %}
-    <div id="draggable1" class="ui-widgit-content">
-        <p>Barbara</p>
+    <h4>Group 1<button>show</button></h4>
+    <div>
+      <ol>
+        <li class="placeholder">Add individuals here</li>
+      </ol>
     </div>
-    <div id="draggable2" class="ui-widgit-content">
-        <p>Charlotte</p>
+    <h4>Group 2<button>show</button></h4>
+    <div>
+      <ol>
+        <li class="placeholder">Add individuals here</li>
+      </ol>
+    </div>
+    <h4>Group 3<button>show</button></h4>
+    <div>
+      <ol>
+        <li class="placeholder">Add individuals here</li>
+      </ol>
     </div>
     
-    <div id="draggable3" class="ui-widgit-content">
-        <p>Jing</p>
-    </div>
-    
-    <div id="draggable4" class="ui-widgit-content">
-        <p>Rachael</p>
-    </div>
   </div>
 </div>
- 
- 
 </body>
 </html>
