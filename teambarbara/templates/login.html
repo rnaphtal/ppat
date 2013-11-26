@@ -24,7 +24,7 @@
 	</head>
 	
 	<body>
-		{
+		
 		<div class="containerParent">
 		
 		<center>
@@ -54,6 +54,11 @@
 										<input id="id_first_name" maxlength="30" name="name" type="text" />
 									</div>
 								</div>
+								{% if form.name.errors %}
+								<div class="alert alert-error">
+								  <p>Your username is not unique.</p>
+								</div>
+								{% endif %}
 
 							
 

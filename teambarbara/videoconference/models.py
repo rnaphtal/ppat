@@ -10,7 +10,7 @@ import django.dispatch
 
 class UserProfile(models.Model):
     #user= models.OneToOneField(User)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     element_id = models.CharField(max_length=200)
     room_name = models.CharField(max_length=200)
     #user = models.OneToOneField(User)
@@ -33,9 +33,12 @@ class Meeting (models.Model):
 
 #User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
 
-class UserProfileForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    room_name = forms.CharField(max_length=100)
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields=['name','room_name']
+    #name = forms.CharField(max_length=200)
+    #room_name = forms.CharField(max_length=100)
     #meeting = models.ManyToManyField(Meeting)
     #authors = forms.ModelMultipleChoiceField(queryset=Author.objects.all())
 

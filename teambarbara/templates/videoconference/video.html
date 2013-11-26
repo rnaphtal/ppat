@@ -2,16 +2,102 @@
 <html>
 <head>
 <script src="http://simplewebrtc.com/latest.js"></script>
- 
+
 </head>
 
 <body>
-
+Welcome user {{myname}}
 <div id="localVideo" muted></div>
 <div id="remoteVideo"></div>
-<script type="text/javascript" src="{{ STATIC_URL }}js/test.js"><script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/test.js"></script>
 <script>
+var getData = function() {
+	console.log("{{ room_name }}");
+	$.getJSON('/participants/{{ room_name }}', loadData);
+}
 
+var loadData = function(data) {
+	currentParticipants={}
+	console.log(data.participants);
+	participants = data.participants;
+	for(i=0;i<participants.length;i++){
+		if ("{{myname}}" != participants[i]){
+			updateVideoID(participants[i]);
+		}
+	}
+
+}
+
+SimpleWebRTC.prototype.sampleHandlePeerStreamAdded = SimpleWebRTC.prototype.handlePeerStreamAdded;
+SimpleWebRTC.prototype.handlePeerStreamAdded = function (peer) {
+	console.log("in my handlePeerStreamAdded", peer);
+	//this.connection.emit('newName', "{{myname}}");
+	getData();
+	this.sampleHandlePeerStreamAdded(peer)
+    
+};
+
+SimpleWebRTC.prototype.joinRoom = function (name, cb) {
+	console.log("in my join room");
+	console.log(this.connection.socket.sessionid); //This is the id of the current video
+	$.getJSON('/set_videoID/{{ myname }}/'+this.connection.socket.sessionid);
+
+    var self = this;
+    this.roomName = name;
+    this.connection.emit('join', name, function (err, roomDescription) {
+        if (err) {
+            self.emit('error', err);
+        } else {
+            var id,
+                client,
+                type,
+                peer;
+                console.log(roomDescription.clients);
+            for (id in roomDescription.clients) {
+                client = roomDescription.clients[id];
+                for (type in client) {
+                    if (client[type]) {
+                        peer = self.webrtc.createPeer({
+                            id: id,
+                            type: type,
+                        });
+                        peer.start();
+                    }
+                }
+            }
+        }
+
+        if (cb) cb(err, roomDescription);
+        self.emit('joinedRoom', name);
+    });
+};
+
+jQuery(window).bind(
+    "beforeunload", 
+    function() { 
+    	//Add code here to remove particpant
+        //return confirm("Do you really want to close?") 
+        $.getJSON('/deleteUser/{{ myname }}');
+        return "";
+    }
+)
+
+var webrtc = new SimpleWebRTC({
+  localVideoEl: 'localVideo',
+  remoteVideosEl: 'remoteVideo',
+  autoRequestMedia: true
+});
+
+webrtc.on('readyToCall', function () {
+  var roomName = "{{ room_name }}";
+  console.log(roomName);
+  webrtc.joinRoom(roomName);
+});
+
+webrtc.connection.on('newName', function(name, peer){
+	console.log("Name added"+name);
+	console.log(peer);
+});
 
 </script>
 
