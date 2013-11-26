@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django import forms
+from django.db.models.signals import m2m_changed
+from django.dispatch import receiver
+import django.dispatch
 
 # Create your models here.
 
@@ -15,6 +18,10 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def enter_room (self, room):
+        print "sending"
+        user_entered.send(sender=UserProfile, room=room, user = self)
 
 
 class Meeting (models.Model):
@@ -34,3 +41,8 @@ class UserProfileForm(forms.Form):
 
     def __unicode__(self):
         return self.name
+
+user_entered = django.dispatch.Signal(providing_args=["data"])
+
+
+

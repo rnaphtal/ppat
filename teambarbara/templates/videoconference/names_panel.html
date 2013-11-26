@@ -3,11 +3,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>jQuery UI Accordion - Default functionality</title>
+  <title>Team Barbara</title>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css" />
+ 
+  
   <style>
   #draggable1 {width: 150px; height: 150 px; padding 0.5em;}
   #draggable2 {width: 150px; height: 150 px; padding 0.5em;}
@@ -66,6 +67,7 @@
   </script>
 </head>
 <body>
+  
 <div id="new group">
 <button> New Group </button>
 </div>
@@ -105,6 +107,12 @@
   </div>
   <h3>Individuals</h3>
   <div>
+    
+    {% for user in others %}
+    <div id="{{user.name}}" class="ui-widgit-content">
+        <p>{{user.name}}</p>
+    </div>
+    {% endfor %}
     <div id="draggable1" class="ui-widgit-content">
         <p>Barbara</p>
     </div>

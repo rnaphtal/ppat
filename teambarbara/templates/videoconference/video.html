@@ -2,25 +2,17 @@
 <html>
 <head>
 <script src="http://simplewebrtc.com/latest.js"></script>
+ 
 </head>
 
 <body>
 
 <div id="localVideo" muted></div>
 <div id="remoteVideo"></div>
-
+<script type="text/javascript" src="{{ STATIC_URL }}js/test.js"><script>
 <script>
 
-var webrtc = new SimpleWebRTC({
-  localVideoEl: 'localVideo',
-  remoteVideosEl: 'remoteVideo',
-  autoRequestMedia: true
-});
 
-webrtc.on('readyToCall', function () {
-  var roomName = "{{ room_name }}";
-  webrtc.joinRoom(roomName);
-});
 </script>
 
 </body>
