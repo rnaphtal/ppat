@@ -64,7 +64,11 @@
         $('.groups ol').droppable(drpOptions); 
         $('button[id="togvid"]').button({
         icons: {primary: "ui-icon-image"}
-    });     
+        });
+        $( 'button[id="togvid"]' ).button()
+            .click(function(e){
+                e.stopPropagation();
+            });     
     });
 
     $( ".groups" ).accordion({
@@ -136,7 +140,7 @@
           <ul>
             {% for user in others %}
             <li id="{{user.name}}" class="ui-widgit-content">
-            <button id="togvid" onclick="$('#{{user.name}}').toggle();">{{user.name}}</button>
+                {{user.name}}<button id="togvid" onclick="$('#{{user.name}}').toggle();"></button>
             </li>
             {% endfor %}
           </ul>
