@@ -10,10 +10,59 @@
   <style>
   /* style the list to maximize the droppable hitarea */
   .groups ol { margin: 0; padding: 2em 0 2em 3em; }
+  body {background-image: url('http://fc03.deviantart.net/fs70/i/2011/112/b/e/white_texture_by_micorox-d3eknqw.jpg');}
   </style>
   <script>
-  $(function() {
-    $( "#grouping" ).accordion({
+  $(document).ready(function() {
+    $( "> div", "#groupsDispos" ).draggable({
+        helper: "clone",
+        revert: "invalid",
+        cursor: "move",
+        handle: "h3",
+        connectToSortable: ".groups"
+    });
+    
+    $( ".groups" ).accordion({
+        header: "> div > h3",
+        collapsible: true,
+        active: false,
+        autoHeight: false,
+        autoActivate: true
+    });
+    
+    $( ".groups" ).sortable({
+        axis: "y",
+        handle: "h3",
+        items: "div",
+        receive: function(event, ui) {
+            $(ui.item).removeClass();
+            $(ui.item).removeAttr("style");
+            $( ".questions" ).accordion("add", "<div>" + ui.item.hmtl() + "</div>");
+        }
+    });
+    
+    $( "#groupsDispos" ).accordion({
+        header: "> div > h3",
+        collapsible: true,
+        active: false,
+        autoHeight: false
+    });
+    $( 'button[id="togvid"]' ).button()
+    .click(function(e){
+        e.stopPropagation();
+        });
+    $('button[id="togvid"]').button({
+        icons: {primary: "ui-icon-image"}
+    });
+    $('#addGroup').click( function() {
+        var newDiv = '<div><h3 aria-selected="false"><a href="#">New Group</a><button id="togvid">show</button></h3><div><ol><li class="placeholder">Add individuals here</li><br /></ol></div></div>';
+        
+        $('.groups').append(newDiv)
+        $('.groups').accordion("refresh");        
+    });
+});
+    $(function() {
+    $( ".groups" ).accordion({
         collapsible:true,
         beforeActivate: function(event, ui) {
              // The accordion believes a panel is being opened
@@ -66,62 +115,59 @@
       }
     });
   });
-  $(function() {
-    $("button").button()
-    .click(function(e){
-        e.stopPropagation();
-        });
-    });
-  $(function() {
-    $("#groupButton").click(function() {
-        var newAccordion='<h4>New Group<button>show</button></h4><div><ol><li class="placeholder">Add individuals here</li></ol>'
-        $("#grouping").append(newAccordion).accordion("refresh").accordion();
-        });
-  });
+
   </script>
 </head>
 <body>
 
-<div id="groupButton">
-<button> New Group </button>
-</div>
 
+<div>
+    <button id="addGroup">New Group</button>
+</div>
 <div class="groups">
-  <div id="grouping">
-    <h4><a href="#">Individuals</a></h4>
-    <div id="people">
-      <ul>
-        {% for user in others %}
-        <li id="{{user.name}}" class="ui-widgit-content">
-        <button>{{user.name}}</button>
-        </li>
-        {% endfor %}
-        <li><button>Barbara</button></li>
-        <li><button>Charlotte</button></li>
-        <li><button>Jing</button></li>
-        <li><button>Rachael</button></li>
-      </ul>
-    </div>
-    <h4>Group 1<button>show</button></h4>
     <div>
-      <ol>
-        <li class="placeholder">Add individuals here</li>
-      </ol>
-    </div>
-    <h4>Group 2<button>show</button></h4>
-    <div>
-      <ol>
-        <li class="placeholder">Add individuals here</li>
-      </ol>
-    </div>
-    <h4>Group 3<button>show</button></h4>
-    <div>
-      <ol>
-        <li class="placeholder">Add individuals here</li>
-      </ol>
+        <h3><a href="#">Individuals</a></h3>
+        <div id="people">
+          <ul>
+            {% for user in others %}
+            <li id="{{user.name}}" class="ui-widgit-content">
+            <button id="togvid">{{user.name}}</button>
+            </li>
+            {% endfor %}
+            <li>Barbara<button id="togvid" /></li>
+            <li>Charlotte<button id="togvid"></button></li>
+            <li>Jing<button id="togvid"></button></li>
+            <li>Rachael<button id="togvid"></button></li>
+          </ul>
+        </div>
     </div>
     
-  </div>
+    <div>
+        <h3><a href="#">Group 1</a><button id="togvid">show</button></h3>
+        <div>
+            <ol>
+            <li class="placeholder">Add individuals here</li><br />
+            </ol>
+        </div>
+    </div>
+    
+    <div>
+        <h3><a href="#">Group 2</a><button id="togvid">show</button></h3>
+        <div>
+            <ol>
+            <li class="placeholder">Add individuals here</li><br />
+            </ol>
+        </div>
+    </div>
+    
+    <div>
+        <h3><a href="#">Group 3</a><button id="togvid">show</button></h3>
+        <div>
+            <ol>
+            <li class="placeholder">Add individuals here</li><br />
+            </ol>
+        </div>
+    </div>
 </div>
 </body>
 </html>
