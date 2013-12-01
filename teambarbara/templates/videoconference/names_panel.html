@@ -57,11 +57,15 @@
     $('#addGroup').click( function() {
         var newDiv = '<div><h3 aria-selected="false"><a href="#">New Group</a><button id="togvid">show</button></h3><div><ol><li class="placeholder">Add individuals here</li><br /></ol></div></div>';
         
-        $('.groups').append(newDiv)
-        $('.groups').accordion("refresh");        
+        
+        $('.groups').append(newDiv);
+        $('.groups').accordion("refresh");  
+        $('.groups ol').droppable(drpOptions); 
+        $('button[id="togvid"]').button({
+        icons: {primary: "ui-icon-image"}
+    });     
     });
-});
-    $(function() {
+
     $( ".groups" ).accordion({
         collapsible:true,
         beforeActivate: function(event, ui) {
@@ -98,15 +102,15 @@
       appendTo: "body",
       helper: "clone"
     });
-    $( ".groups ol" ).droppable({
-      activeClass: "ui-state-default",
-      hoverClass: "ui-state-hover",
-      accept: ":not(.ui-sortable-helper)",
-      drop: function( event, ui ) {
+    var drpOptions={
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        accept: ":not(.ui-sortable-helper)",
+        drop: function(event, ui) {
         $( this ).find( ".placeholder" ).remove();
         $( "<li></li>" ).text( ui.draggable.text() ).appendTo( this );
-      }
-    }).sortable({
+        }};
+    $( ".groups ol" ).droppable(drpOptions).sortable({
       items: "li:not(.placeholder)",
       sort: function() {
         // gets added unintentionally by droppable interacting with sortable
