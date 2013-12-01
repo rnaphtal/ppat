@@ -136,13 +136,17 @@
           <ul>
             {% for user in others %}
             <li id="{{user.name}}" class="ui-widgit-content">
-            <button id="togvid" onclick="$('#welcome').toggle();">{{user.name}}</button>
+            <button id="togvid" onclick="$('#{{user.name}}').toggle();">{{user.name}}</button>
             </li>
             {% endfor %}
           </ul>
         </div>
     </div>
     
+    <div id="dennis">
+        <p>Aloha!</p>
+    </div>
+
     <div>
         <h3><a href="#">Group 1</a><button id="togvid">show</button></h3>
         <div>
