@@ -9,6 +9,7 @@ var currentParticipants = {}
 
 var loadData = function(data) {
 	currentParticipants={}
+	console.log("another Hello");
 	console.log(data.participants);
 	participants = data.participants;
 	for(i=0;i<participants.length;i++){

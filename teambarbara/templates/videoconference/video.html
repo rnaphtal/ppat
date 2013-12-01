@@ -6,7 +6,7 @@
 </head>
 
 <body>
-Welcome user {{myname}}
+<div id="welcome">Welcome user {{myname}}</div>
 <div id="localVideo" muted></div>
 <div id="remoteVideo"></div>
 <script type="text/javascript" src="{{ STATIC_URL }}js/test.js"></script>
@@ -18,7 +18,8 @@ var getData = function() {
 
 var loadData = function(data) {
 	currentParticipants={}
-	console.log(data.participants);
+    console.log("Hello");
+	console.log("participants: " + data.participants);
 	participants = data.participants;
 	for(i=0;i<participants.length;i++){
 		if ("{{myname}}" != participants[i]){

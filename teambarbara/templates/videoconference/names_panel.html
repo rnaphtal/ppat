@@ -50,6 +50,7 @@
     $( 'button[id="togvid"]' ).button()
     .click(function(e){
         e.stopPropagation();
+
         });
     $('button[id="togvid"]').button({
         icons: {primary: "ui-icon-image"}
@@ -131,13 +132,9 @@
           <ul>
             {% for user in others %}
             <li id="{{user.name}}" class="ui-widgit-content">
-            <button id="togvid">{{user.name}}</button>
+            <button id="togvid" onclick="$('#welcome').toggle();">{{user.name}}</button>
             </li>
             {% endfor %}
-            <li>Barbara<button id="togvid" /></li>
-            <li>Charlotte<button id="togvid"></button></li>
-            <li>Jing<button id="togvid"></button></li>
-            <li>Rachael<button id="togvid"></button></li>
           </ul>
         </div>
     </div>
