@@ -29,8 +29,8 @@ var updateVideoID = function (name){
 
 var addIndivNames = function (participant) {
 	videoID = currentParticipants[participant];
-	clickBehavior = toggleVideoAndColor(videoID);
-	$(".people_names").html($(".people_names").html()+'<button id=' + 'name_' + videoID + ' onclick=' + clickBehavior+ '>' + participant + '</button>');
+	clickBehavior = "toggleVideoAndColor('"+videoID+"')";
+	$(".people_names").html($(".people_names").html()+'<li class="ui-widgit-content"><button id=' + 'name_' + videoID + ' class="green" onclick=' + clickBehavior+ '>' + participant + '</button></li>');
 	
 
 
@@ -40,9 +40,9 @@ var addIndivNames = function (participant) {
 }
 
 var toggleVideoAndColor = function(videoID) {
-	toggleVideo = "$('video[id^=" + videoID + "]').toggle();";
-	toggleColor = "$('video[id^=" + 'name_' + videoID + "]').toggleClass('green');";
-	return toggleVideo + toggleColor;
+	toggleVideo = $("video[id^=" + videoID + "]").toggle();
+	toggleColor = $("button[id^='name_" + videoID + "']").toggleClass('green');
+	//return toggleVideo + toggleColor;
 
 } 
 
