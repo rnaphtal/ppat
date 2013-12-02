@@ -23,14 +23,13 @@ var loadData = function(data) {
 var updateVideoID = function (name){
 	$.getJSON('/get_videoID/'+participants[i], function(p_id){
 				currentParticipants[name]=p_id.videoID;
-				
             	addIndivNames(name);
 			});
 }
 
 var addIndivNames = function (participant) {
 	videoID = currentParticipants[participant];
-	clickBehavior = "$('#" + videoID + "_video_incoming').toggle();";
+	clickBehavior = "$('video[id^=" + videoID + "]').toggle();";
 	$(".people_names").html($(".people_names").html()+'<button id="togvid" onclick=' + clickBehavior+ '>' + participant + '</button>');
 	
 
