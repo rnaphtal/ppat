@@ -21,12 +21,14 @@ var loadData = function(data) {
     console.log("Hello");
 	console.log("participants: " + data.participants);
 	participants = data.participants;
+    $(".people_names").html("");
 	for(i=0;i<participants.length;i++){
 		if ("{{myname}}" != participants[i]){
 			updateVideoID(participants[i]);
+
 		}
 	}
-
+    
 }
 
 SimpleWebRTC.prototype.sampleHandlePeerStreamAdded = SimpleWebRTC.prototype.handlePeerStreamAdded;
