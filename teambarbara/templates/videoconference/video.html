@@ -32,10 +32,17 @@ var loadData = function(data) {
 
 SimpleWebRTC.prototype.sampleHandlePeerStreamAdded = SimpleWebRTC.prototype.handlePeerStreamAdded;
 SimpleWebRTC.prototype.handlePeerStreamAdded = function (peer) {
-	console.log("in my handlePeerStreamAdded", peer);
-	//this.connection.emit('newName', "{{myname}}");
+	
 	getData();
 	this.sampleHandlePeerStreamAdded(peer)
+    
+};
+
+SimpleWebRTC.prototype.sampleHandlePeerStreamRemoved = SimpleWebRTC.prototype.handlePeerStreamRemoved;
+SimpleWebRTC.prototype.handlePeerStreamRemoved = function (peer) {
+    
+    getData();
+    this.sampleHandlePeerStreamRemoved(peer)
     
 };
 
