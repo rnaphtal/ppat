@@ -39,7 +39,7 @@ header {
 	/*-webkit-box-orient: horizontal;*/
 	-webkit-flex: 1 0 0;
 	flex: 1 0 0;
-	border:1px solid red;
+	border:1px solid black;
 }
 
 #videos{
@@ -50,7 +50,7 @@ header {
 	/*-webkit-box-orient: horizontal;*/
 	-webkit-flex: 3 0 0;
 	flex: 3 0 0;
-	border:1px solid blue;
+	
 
 	display: -webkit-flex;
 	display: flex;
@@ -68,16 +68,28 @@ header {
 	display: flex;
 	-webkit-flex-direction: row;
 	flex-direction: row;
-	margin-left: auto;
-	height: 200px;
+	width: 20%;
+position: absolute;
+right: 0px;
 }
 
 #localVideo video{
 	right:0px;
 	position: absolute;
-	height:200px;
+	width:100%;
+}
+
+#remoteVideo {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	width: 80%;
+}
+
+#remoteVideo video{
+	padding:2px;
 }
 
 .green {
 	background-color: green;
-}
