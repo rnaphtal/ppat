@@ -8,10 +8,27 @@ html, body, .container-fluid, .row-fluid {
 body {
 	/*-webkit-box-flex: 1.0;
 	-webkit-box-orient: horizontal;*/
+	/*display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;*/
+}
+
+header {
+	height: 50px;
+	background-color: black;
+	/*Make it a flex box*/
+	display: -webkit-flex;
+	/*Vertically align the text*/
+	-webkit-align-items: center;
+}
+
+.middle {
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-direction: row;
 	flex-direction: row;
+	height: 100%;
 }
 
 #names_panel {
@@ -34,4 +51,29 @@ body {
 	-webkit-flex: 3 0 0;
 	flex: 3 0 0;
 	border:1px solid blue;
+
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	height: 100%;
+}
+
+#logo_text {
+	color: white;
+}
+
+#localVideo {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	margin-left: auto;
+	height: 200px;
+}
+
+#localVideo video{
+	right:0px;
+	position: absolute;
+	height:200px;
 }

@@ -71,3 +71,9 @@ header {
 	margin-left: auto;
 	height: 200px;
 }
+
+#localVideo video{
+	right:0px;
+	position: absolute;
+	height:200px;
+}
