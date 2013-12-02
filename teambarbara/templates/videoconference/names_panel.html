@@ -123,7 +123,15 @@
         $( this ).removeClass( "ui-state-default" );
       }
     });
+
+    (function() {
+        $(".people_names").add("<li>Hello!hello</li>");
+        
+    })();
+    
   });
+
+    
 
   </script>
 </head>
@@ -137,20 +145,12 @@
     <div>
         <h3><a href="#">Individuals</a></h3>
         <div id="people">
-          <ul>
-            {% for user in others %}
-            <li id="{{user.name}}" class="ui-widgit-content">
-                {{user.name}}<button id="togvid" onclick="$('#{{user.name}}').toggle();"></button>
-            </li>
-            {% endfor %}
+          <ul class="people_names">
+
           </ul>
         </div>
     </div>
     
-    <div id="dennis">
-        <p>Aloha!</p>
-    </div>
-
     <div>
         <h3><a href="#">Group 1</a><button id="togvid">show</button></h3>
         <div>
