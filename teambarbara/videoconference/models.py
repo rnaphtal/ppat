@@ -32,15 +32,20 @@ class Meeting (models.Model):
         return self.name
 
 #User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
+class MeetingForm(forms.ModelForm):
+    class Meta:
+        model = Meeting
+        fields=['name']
+
+
+    def __unicode__(self):
+        return self.name
 
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields=['name','room_name']
-    #name = forms.CharField(max_length=200)
-    #room_name = forms.CharField(max_length=100)
-    #meeting = models.ManyToManyField(Meeting)
-    #authors = forms.ModelMultipleChoiceField(queryset=Author.objects.all())
+
 
     def __unicode__(self):
         return self.name

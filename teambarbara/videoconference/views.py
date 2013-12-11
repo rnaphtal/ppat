@@ -85,6 +85,27 @@ def create_user(request):
     return HttpResponse(user_form.cleaned_data)
     return enterRoom(request, "test")
 
+def create_room(request):
+    if request.method == 'POST':
+        
+        user_form = MeetingForm(request.POST)
+        if user_form.is_valid():
+            username = user_form.cleaned_data.get('name')
+            user = Meeting(name=username)
+            
+            user.save()
+            return login(request, username)
+
+    return HttpResponse(user_form.cleaned_data)
+    return enterRoom(request, "test")
+
+def room_created(room):
+    template = loader.get_template('makeMeeting.html')
+    context = RequestContext(request, {
+        'roomname': room
+    })
+    return HttpResponse(template.render(context))
+
 def get_participants(request, room):
     print "Room", room
     #up = request.user.profile
