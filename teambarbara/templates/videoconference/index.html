@@ -20,7 +20,23 @@
 <body>
   <header>
     <h1 id="logo_text">Visual Meeting</h1>
+    <input id="shareURLButton" type="button" class="btn login-button input-large" value="&nbsp;&nbsp;&nbsp;Share URL&nbsp;&nbsp;&nbsp;">
   </header>
+
+  <div id="shareURLModal" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h1 id="fixRaceTitle" class="modal-text"></h1>
+    </div>
+    <div id="fixRaceBody" class="modal-body">
+      <h1>www.teambarbarba.herokuapp/meeting/{{room_name}}</h1>
+    </div>
+    <div class="modal-footer">
+      <a id="cancelButtonFix" href="" data-dismiss="modal" class="btn btnCancelModal">Close</a>
+    &nbsp;
+      
+    </div>
+  </div>
 
   <div class="middle">
     <div id="names_panel">
@@ -32,27 +48,7 @@
      
       {% load staticfiles %}
       {% include "videoconference/video.html" %}
-      <!--<video />
-
-      <script type="text/javascript" src="{{ STATIC_URL }}js/test.js"></script>
-      <script>
-      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
-      var constraints = {video: true};
-
-      function successCallback(stream) {
-        window.stream = stream; // stream available to console
-        var video = document.querySelector("video");
-        video.src = window.URL.createObjectURL(stream);
-        video.play();
-      }
-
-      function errorCallback(error){
-        console.log("navigator.getUserMedia error: ", error);
-      }
-
-      navigator.getUserMedia(constraints, successCallback, errorCallback);
-      </script>-->
+      
     </div>
   <div>
     

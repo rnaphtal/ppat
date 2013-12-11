@@ -31,6 +31,12 @@ header {
 	height: 100%;
 }
 
+#shareURLButton {
+	position:absolute;
+	top: 10px;
+	right:25px;
+}
+
 #names_panel {
 	/*-moz-box-flex:1.0;*/ /* Firefox */
 	/*-webkit-box-flex:1.0;*/ /* Safari and Chrome */

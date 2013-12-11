@@ -1,5 +1,7 @@
 
-console.log("test")
+$('#shareURLButton').click(function (e) {
+		$('#shareURLModal').modal({show: true});
+	});
 
 var userChange = function () {
 	console.log("user changed");
