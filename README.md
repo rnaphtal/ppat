@@ -8,3 +8,5 @@ Problem: people with hearing loss often have a hard time hearing everything that
 Our approach: We created a video conferencing application that allows users to see other meeting attendees on their screen. This way, our users no longer need to strain to see the speakers’ faces when they can’t hear them and need to lip read. The application uses peer to peer connection so that Internet delays can be minimized. In addition, it currently works on Chrome and Firefox browsers.
 
 It uses SimpleWRTC (https://github.com/HenrikJoreteg/SimpleWebRTC) as the basis for video conferencing. For a demo, go to http://teambarbara.herokuapp.com and create a new meeting.
+
+For setup instructions to make it yourself, go here (https://github.com/rnaphtal/ppat/wiki/Setup-Instructions).
